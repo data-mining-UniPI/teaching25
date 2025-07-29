@@ -107,7 +107,7 @@ Algorithm: `PCA`
 **By neighborhood**
 I want to represent the data so that similar instances are similar
 
-Algorithm: `t-SNE`.
+Algorithm: `t-SNE`
 
 </div>
 <div class="column">
@@ -115,7 +115,7 @@ Algorithm: `t-SNE`.
 **By manifold**
 I want to represent the data so that its manifold is preserved
 
-Algorithm: `UMAP`.
+Algorithm: `UMAP`
 
 </div>
 </div>
@@ -215,7 +215,6 @@ The simplest linear combination: scaling. Given a vector $v$, we have combinatio
 <div class="column">
 
 Given a suitable set of vectors, called *basis*, we can redefine every vector as a linear combination of the basis.
-Protip: is it called **basis** because it defines the **basis coordinates** of the space!
 
 
 Every vector $[x_1, \dots, x_m]$ can be defined as a linear combination of the standard basis $[1, 0, \dots, 0],$ $[0, 1, \dots, 0],$ $\dots,$ $[0, 0, \dots, 1]$, with coefficients $x_1, x_2, \dots, x_m$.
@@ -234,7 +233,7 @@ Every vector $[x_1, \dots, x_m]$ can be defined as a linear combination of the s
 </div>
 </div>
 
-<!-- footer: "" -->
+<!-- footer: "Protip: is it called **basis** because it defines the **basis coordinates** of the space!" -->
 
 ---
 

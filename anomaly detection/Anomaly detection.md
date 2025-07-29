@@ -728,42 +728,6 @@ Instances and a separating hyperplane $w^T x + b = 0$. The two half-planes in re
 
 ---
 
-# Support Vector Machines
-
-<div class="ui two column doubling stackable grid container bottom">
-<div class="column">
-
-Geometrically, it is the projection of *margin* points onto a direction orthogonal to the margin:
-
-$$
-(\hat{x}^\in - \hat{x}^\notin) \cdot \dfrac{w}{\mid\mid w \mid\mid},
-$$
-which we can solve as
-$$
-\dfrac{w \cdot \hat{x}^\in - w \cdot \hat{x}^\notin}{\mid\mid w \mid\mid} = 
-\dfrac{(- b + 1) - (- b - 1)}{\mid\mid w \mid\mid} =
-$$
-$$
-= \dfrac{2}{\mid\mid w \mid\mid}
-$$
-
-</div>
-<div class="column">
-
-<img class="ui medium centered image" src="https://cdn.jsdelivr.net/gh/msetzu/marpee@latest/assets/imgs/linalg/SVG/width.svg">
-<div class="caption">
-
-Two instances $x^\in$ (red square), $x^\notin$ (blue circle), their difference $x^\in - x^\notin$ (in blue-to-red gradient), and a vector orthogonal to the margin (in black). The width of the margin is then the projection of the difference on such vector.
-
-</div>
-
-</div>
-</div>
-
-<!-- footer: "Margin points define the hyperplane: they lie on $w \cdot x = -b \\pm 1$." --> 
-
----
-
 # One-class Support Vector Machines
 
 Solving analytically, we have that 
@@ -1672,16 +1636,3 @@ We have studied clustering as a task aimed at discovering groups, which we can, 
 - Connectivity approaches w.r.t. cluster centers, rather than other instances
 
 <!-- footer: "" --> 
-
----
-
-# References
-
-Anomaly Detection, Charu C. Aggarwal. Second edition.
-
-| Topic                          | Sections           |
-| ------------------------------ | ------------------ |
-| **Anomaly detection.**         | 1.3.1-4            |
-| **Distributional approaches.** | 2.2, 2.4.1, 2.5    |
-| **Manifold approaches.**       | 3.2, 3.3           |
-| **Connectivity approaches.**   | 4.2, 4.3, 4.4, 4.5 |
