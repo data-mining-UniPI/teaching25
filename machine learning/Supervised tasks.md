@@ -155,7 +155,7 @@ $$
 <img class="ui image large centered" src="https://cdn.jsdelivr.net/gh/msetzu/marpee@latest/assets/imgs/ml/SVG/univariate_split.svg">
 <div class="caption">
 
-#todo
+A univariate split: the split is orthogonal to the axes.
 
 </div>
 </div>
@@ -193,10 +193,10 @@ Since they generate "oblique" (non axis-parallel) splitting hyperplanes, they ar
 
 </div>
 <div class="column">
-<img class="ui image large centered" src="https://cdn.jsdelivr.net/gh/msetzu/marpee@latest/assets/imgs/ml/SVG/univariate_split.svg">
+<img class="ui image large centered" src="https://cdn.jsdelivr.net/gh/msetzu/marpee@latest/assets/imgs/ml/SVG/multivariate_split.svg">
 <div class="caption">
 
-#todo 
+A multivariate split: the split is not orthogonal to the axes. Also called *oblique* split.
 
 </div>
 </div>
@@ -221,10 +221,10 @@ Instances are routed to all leaves in the tree, accumulating probability density
 
 </div>
 <div class="column">
-<img class="ui image large centered" src="https://cdn.jsdelivr.net/gh/msetzu/marpee@latest/assets/imgs/ml/SVG/univariate_split.svg">
+<img class="ui image large centered" src="https://cdn.jsdelivr.net/gh/msetzu/marpee@latest/assets/imgs/ml/SVG/soft_tree.svg">
 <div class="caption">
 
-#todo 
+A probabilistic tree: an instance is routed to each leaf, accumulating probability mass along the path.
 
 </div>
 </div>
@@ -255,10 +255,10 @@ Instances are routed to all leaves in the tree, accumulating probability density
 </div>
 </div>
 <div class="column">
-<img class="ui image large centered" src="https://cdn.jsdelivr.net/gh/msetzu/marpee@latest/assets/imgs/ml/SVG/univariate_split.svg">
+<img class="ui image large centered" src="https://cdn.jsdelivr.net/gh/msetzu/marpee@latest/assets/imgs/ml/SVG/soft_tree.svg">
 <div class="caption">
 
-#todo 
+A probabilistic tree: an instance is routed to each leaf, accumulating probability mass along the path.
 
 </div>
 </div>
@@ -405,10 +405,10 @@ Each feature enjoys a *learned* representation given by a parametric *shape* fun
 
 </div>
 <div class="column">
-<img class="ui image large centered" src="https://cdn.jsdelivr.net/gh/msetzu/marpee@latest/assets/imgs/ml/SVG/gam.svg">
+<img class="ui image large centered" src="https://cdn.jsdelivr.net/gh/msetzu/marpee@latest/assets/imgs/ml/SVG/GAM.svg">
 <div class="caption">
 
-An architectural illustration of a $GAM$.
+An architectural illustration of a $GAM$. Each block $f_i$ indicates a differentiable shape function.
 
 </div>
 </div>
@@ -439,38 +439,12 @@ An architectural illustration of a $GAM$.
 </div>
 </div>
 <div class="column">
-<img class="ui image medium centered" src="https://cdn.jsdelivr.net/gh/msetzu/marpee@latest/assets/imgs/ml/SVG/gam.svg">
+<img class="ui image large centered" src="https://cdn.jsdelivr.net/gh/msetzu/marpee@latest/assets/imgs/ml/SVG/GAM.svg">
 </div>
 </div>
 
 <!-- footer: "" -->
 
----
-
-# Generalized $Additive^2$ Models
-
-
-<div class="ui two column doubling stackable grid container bottom">
-<div class="column">
-
-GAMs can also tackle feature interaction by inserting it as an inductive bias in the architecture.
-
-$$
-f(x) \equiv \sum^m \omega_i f_i(x_i) + \sum^m_{i \neq j} \omega_{i, j} f_{i, j}(x_i, x_j) + \omega_0.
-$$
-
-<div class="caption">
-
-An architectural illustration of a $GA^2M$.
-
-</div>
-</div>
-<div class="column">
-<img class="ui image large centered" src="https://cdn.jsdelivr.net/gh/msetzu/marpee@latest/assets/imgs/ml/SVG/ga2ms.svg">
-</div>
-</div>
-
-<!-- footer: "" -->
 
 ---
 
