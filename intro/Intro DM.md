@@ -74,6 +74,25 @@ topic:
 
 <!-- paginate: true -->
 
+# Shifting focus
+
+- Optimization methods: minimize a function
+- Machine learning: learn and assess models
+- Algorithms: solve a well-defined problem
+
+In data mining, the focus is broader: extract (**human-readable**) **knowledge and insight** from **raw data**.
+
+---
+
+# Shifting focus
+
+- Knowledge implies we are often not *just* trying to solve a task
+- Insight implies that we should infer *non-obvious* knowledge
+- Human-readable implies that knowledge should be (when possible) understood by humans: focus on *interpretability*!
+- Raw data implies we'll need to clean it
+
+---
+
 # Data Mining
 
 <div class="ui raised segment question">
@@ -87,7 +106,7 @@ Discipline that studies the efficient extraction and analysis of information and
 
 # Large data collections
 
-Large collections tend are heterogeneous in...
+Large collections tend to be heterogeneous in...
 
 - Source, i.e., they often gather different data sources, e.g., data from different labs, e-commerce websites, different cities/states, etc.
 - Domain: scientific data, transactional data (e-commerce), traffic data, social networks, sensor data, etc.
@@ -100,12 +119,12 @@ These separate data collections from datasets!
 
 # Large data collections
 
-Before we even think of analyzing and extract patterns from such data, we must store it. The first step of Data Mining is data storage and warehousing.
+Before we even think of analyzing and extract patterns from such data, we must store it. The first step of Data Mining is data gathering, storage and warehousing.
 
 <img src="1.png" class="ui image medium">
 <div class="caption">
 
-Data mining pipeline, step 1.
+The knowledge discovery pipeline, step 1.
 
 </div>
 
@@ -118,7 +137,7 @@ Simple storage does not tackle the source heterogeneity, thus we need to properl
 <img src="2.png" class="ui image large"/>
 <div class="caption">
 
-Data mining pipeline, step 1 and 2.
+The knowledge discovery pipeline, step 1 and 2.
 
 </div>
 
@@ -128,13 +147,11 @@ Data mining pipeline, step 1 and 2.
 
 - Sources are integrated
 - Language is homogeneous: same conventions, scales, and encodings
-- Refinement: data is clear of noise and outliers, and can be analyzed
+- Refinement: data is cleared of noise and outliers, and can be analyzed
 
 ---
 
 # Information and patterns... for what?
-
-Meant with a precise and technical connotation in other disciplines, e.g., compression, here they assume a broader meaning. 
 
 <div class="ui raised segment question">
 <p class="question" style="display: inline;">Data Mining</p>
@@ -149,22 +166,10 @@ Information... for what? For whom?
 
 # Information as insight
 
-Rather than simply find numerical regularities, in data mining we look to also find useful and interesting **patterns which can aid a human's understanding of the domain**, and to **gather insight**.
-
-Rather than solving a given task, we look to answer questions, e.g.,
+Rather than just solving a given task, we look to answer questions on the data. Say it's January 2020, and you are analyzing health records, e.g., hospital reports, data from Pisa, Frankfurt, and Wuhan. What might you ask of the data?
 - Are there some common patterns in the data?
 - Are there some anomalies?
 - Are there data groups with different behaviors?
-
----
-
-# Information as insight
-
-Insight allows a human to make decisions, e.g., 
-
-- Are there some common patterns in the data? Then maybe my heterogeneous sources are observing a common phenomenon: study said phenomenon
-- Are there some anomalies? Then maybe there is a problem with my data, or I've found something new: check my data sources
-- Are there data groups with different behaviors? Then I may want to study them separately
 
 ---
 
@@ -178,19 +183,40 @@ It's January 2020, and you are analyzing health records, e.g., hospital reports,
 
 ---
 
+# From insight to action
+
+Insight allows a human to **make decisions**, e.g., 
+- Are there some common patterns in the data? Then maybe my heterogeneous sources are observing a common phenomenon: study said phenomenon
+- Are there some anomalies? Then maybe there is a problem with my data, or I've found something new: check my data sources
+- Are there data groups with different behaviors? Then I may want to study them separately
+
+---
+
 # Information as insight
 
-Information is extracted from filtered data from which patterns are extracted. This enables the human to prompt a loop in the pipeline. Not all patterns are equally useful, thus a pattern evaluation step is required.
+Information is extracted from filtered data from which patterns are extracted. Not all patterns are equally useful, thus a pattern evaluation step is required.
 
 <img src="3.png" class="ui image massive centered"/>
 <div class="caption">
 
-Data mining pipeline, steps 1 through 4.
+The knowledge discovery pipeline.
 
 </div>
 
 ---
 
+# Information as insight
+
+Missing data may lead us to go back to gathering.
+
+<img src="7.png" class="ui image massive centered"/>
+<div class="caption">
+
+The knowledge discovery pipeline.
+
+</div>
+
+---
 # Thought exercise
 
 You are given a cycling data collection, with data gathered from different sources, covering all tours of thousands of cyclists from 2018 to 2024.
@@ -303,10 +329,11 @@ Heavy, burly cyclists -> Good on flat terrains
 
 # Summing up: data mining tasks
 
-| Task                                      | Goal                                 |
-| ----------------------------------------- | ------------------------------------ |
-| Distributional and correlational analysis | Understand data behavior             |
-| Outlier detection                         | Find anomalous data                  |
-| Rule mining                               | Finding rule-like patterns           |
-| Clustering                                | Find profiles and groups within data |
-| Modeling                                  | Predict on future data               |
+| Task                | Goal                                 |
+| ------------------- | ------------------------------------ |
+| Data understanding  | Understand data behavior             |
+| Data transformation | Cleaning and enriching data          |
+| Outlier detection   | Find anomalous data                  |
+| Rule mining         | Finding rule-like patterns           |
+| Clustering          | Find profiles and groups within data |
+| Modeling            | Predict on future data               |
