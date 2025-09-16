@@ -80,11 +80,77 @@ topic:
 - Machine learning: learn and assess models
 - Algorithms: solve a well-defined problem
 
-In data mining, the focus is broader: extract (**human-readable**) **knowledge and insight** from **raw data**.
+In data mining the focus is **the data itself**! We wish to analyze it and understand it.
 
 ---
 
-# Shifting focus
+# Task VS Data focus
+
+It's January 2020, and you are analyzing health records, e.g., hospital reports, data from Pisa, Frankfurt, and Wuhan.
+
+<div class="ui segment VS">
+<div class="ui two column very relaxed grid">
+<div class="column">
+
+**Task-focus**
+
+- Predict discharge date
+- Predict mortality
+- ...
+
+</div>
+<div class="column">
+
+**Data-focus**
+
+- Find patients with atypical symptoms
+- Find patterns in delayed care
+- Find typical patient profiles
+- ...
+
+</div>
+</div>
+<div class="ui vertical divider">
+VS
+</div>
+</div>
+
+
+---
+
+# Task VS Data focus
+
+It's January 2020, and you are analyzing health records, e.g., hospital reports, data from Pisa, Frankfurt, and Wuhan.
+
+<div class="ui segment VS">
+<div class="ui two column very relaxed grid">
+<div class="column">
+
+**Task-focus**
+
+- Problem-centric
+- Artifact-centric
+
+</div>
+<div class="column">
+
+**Data-focus**
+
+- Information-centric
+- Human-centric
+
+</div>
+</div>
+<div class="ui vertical divider">
+VS
+</div>
+</div>
+
+---
+
+# Data and information focus
+
+In data mining, the goal is to extract (**human-readable**) **knowledge and insight** from **raw data**.
 
 - Knowledge implies we are often not *just* trying to solve a task
 - Insight implies that we should infer *non-obvious* knowledge
@@ -166,16 +232,11 @@ Information... for what? For whom?
 
 # Information as insight
 
-Rather than just solving a given task, we look to answer questions on the data. Say it's January 2020, and you are analyzing health records, e.g., hospital reports, data from Pisa, Frankfurt, and Wuhan. What might you ask of the data?
-- Are there some common patterns in the data?
-- Are there some anomalies?
-- Are there data groups with different behaviors?
+Look to answer **questions on the data as a stakeholder**. Say it's January 2020, and you are analyzing health records, e.g., hospital reports, data from Pisa, Frankfurt, and Wuhan. What might you ask of the data?
 
 ---
 
 # Information as insight
-
-It's January 2020, and you are analyzing health records, e.g., hospital reports, data from Pisa, Frankfurt, and Wuhan.
 
 - Are there some common patterns in the data? You find a shared influx of new patient with respiratory diseases
 - Are there some anomalies? A small set of such patients does not exhibit any common predisposing conditions
@@ -212,7 +273,7 @@ Missing data may lead us to go back to gathering.
 <img src="7.png" class="ui image massive centered"/>
 <div class="caption">
 
-The knowledge discovery pipeline.
+The knowledge discovery loop.
 
 </div>
 
