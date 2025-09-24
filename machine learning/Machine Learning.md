@@ -198,6 +198,17 @@ Ideally, we want to have learning algorithms with low enough bias and variance.
 <!-- footer: "" -->
 
 ---
+
+# Pointer: model confidence and expected performance
+
+There are areas of machine learning that locally tackle expected model performance.
+
+- Learn to reject: should we expect the performance to hold?
+- Learn to defer: to what model should we defer this instance to?
+
+<!-- footer: "This is not part of the program!" -->
+
+---
 # A capacity's view
 
 <div class="ui two column doubling stackable grid container bottom">
@@ -679,10 +690,9 @@ Unlike classification, regression estimates on a *continuous set*, thus we can't
 ---
 # Performance evaluation: regression
 
-
-$R^2$. The two terms of $R^2$ are
+The two terms of $R^2$ are
 - the model error $e^2 = \sum_{i = 1}^n \mid\mid f(x_i) - Y_i \mid\mid_2^2$ 
-- the variance of the data $\sigma^2$. This would also be the error of a simple model predicting the average
+- the variance of the data $\sigma^2$. This would be the error of a simple model predicting the average
 
 Thus, their ratio compares the error of a model with the one of a default model. The lower such ratio, the better the model, and the closer to $1$ the $R^2$ score. Viceversa, the higher the ratio, the lower the $R^2$ score.
 
