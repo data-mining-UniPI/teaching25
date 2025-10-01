@@ -105,18 +105,18 @@ These can co-occur!
 You are given a cycling data collection, with data gathered from different sources, covering all tours of thousands of cyclists from 2018 to 2024.
 
 <div class="ui two column doubling stackable grid container bottom">
-<div class="column">
+<div class="column w25">
 
 **Data**
 
 - Speed
 - Cadence
 - Bike used
-- Track, e.g., length, elevation, climbs
-- Info on the cyclist, e.g., age
+- Track, e.g., length, climbs
+- Cyclist info, e.g., age
 
 </div>
-<div class="column">
+<div class="column w75">
 
 **Shapes**
 
@@ -203,7 +203,7 @@ Records on the rows, attributes on the columns.
 
 Data is linked, either on records or features.
 
-<img class="ui image large centered" src="graph.png"/>
+<img class="ui image large centered" src="graph.jpg"/>
 <div class="caption">
 
 A simplified view of the Wikipedia knowledge graph on Mona Lisa.
@@ -221,7 +221,7 @@ Records are nodes in a graph, attributes can vary wildly across records.
 Records are sequences (of variable length): attributes are indexed (order or time).
 
 <div class="ui two column doubling stackable grid container bottom">
-<div class="column">
+<div class="column w60">
 
 **Order**
 
@@ -240,7 +240,7 @@ Start of the Divina Commedia (top) and codons synthesizing Glutamic acid (bottom
 
 </div>
 </div>
-<div class="column">
+<div class="column w40">
 
 **Time**
 
@@ -347,7 +347,7 @@ Distribution  of a categorical attribute in a bar chart.
 
 # Data semantics: useful statistics
 
-<div class="ui two column doubling stackable grid container bottom" style="width: 50%;">
+<div class="ui two column doubling stackable grid container bottom">
 <div class="column">
 
 **Expected value**
@@ -364,7 +364,7 @@ Distance from the expected value of all records: the data spread
 </div>
 </div>
 
-<div class="ui two column doubling stackable grid container bottom" style="width: 50%;">
+<div class="ui two column doubling stackable grid container bottom">
 <div class="column">
 
 **Quantiles**
@@ -499,7 +499,7 @@ Remember: **garbage in, garbage out**! In a task-agnostic view, we are intereste
 
 # Dealing with... duplicates
 
-Trivial: remove them... when appropriate! Not all duplicates are garbage, it depends on what insight you can gather from it.
+Trivial: remove them... when appropriate! It depends on what insight they carry.
 
 <div class="ui two column doubling stackable grid container bottom">
 <div class="column">
