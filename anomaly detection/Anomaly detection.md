@@ -362,7 +362,7 @@ Grubb's test iterates over detected outliers, removing one layer of outliers at 
 2. If $\hat{X} = \emptyset$, terminate
 3. $X = X \setminus \hat{X}$, go to 1
  
-<!-- footer: "" -->
+<!-- footer: "Sample Criteria for Testing Outlying Observations, Frank E. Grubbs" -->
 
 ---
 
@@ -518,9 +518,9 @@ Critical value.
 
 Distributional approaches define the density, but do not describe the data itself. $\tilde{o}$ is defined in terms of the manifold: does the given instance *lie* in the manifold? Just like the distributional approach, we must assume the manifold family.
 
-To preserve the interpretability of our results, we stick to *linear* manifolds*.
+To preserve the interpretability of our results, we stick to *linear* manifolds.
 
-<!-- footer: "*We won't." --> 
+<!-- footer: "" --> 
 
 ---
 
@@ -637,16 +637,6 @@ which does not admit a unique solution for a singular $(A^T A)$, and is prone to
 
 ---
 
-# Tackling collinearity: PCA
-
-The instability of least squares is due to the data collinearity. A possible solution: de-correlate the data! Principal Component Analysis (PCA) does just this.
-
-The cost: lower interpretability of the results.
-
-<!-- footer: "" --> 
-
----
-
 # Least Squares 
 
 | Axis                 |                                                                           |
@@ -745,7 +735,7 @@ Connectivity as a *postings* (not adjacency!) matrix $A$: $A_{i, j}$ is the $j-t
 </div>
 </div>
 
-<!-- footer: "How do we populate the posting lists? $k-NN$!" --> 
+<!-- footer: "" --> 
 
 ---
 
@@ -773,7 +763,7 @@ Neighbors at 1 of two instances (in red and blue): their neighbors circled of th
 </div>
 </div>
 
-<!-- footer: "How do we populate the posting lists? $k-NN$!" --> 
+<!-- footer: "" --> 
 
 ---
 
@@ -801,7 +791,7 @@ Neighbors at 2 of two instances (in red and blue): their neighbors circled of th
 </div>
 </div>
 
-<!-- footer: "How do we populate the posting lists? $k-NN$!" --> 
+<!-- footer: "" --> 
 
 ---
 
@@ -829,7 +819,7 @@ Neighbors at 3 of two instances (in red and blue): their neighbors circled of th
 </div>
 </div>
 
-<!-- footer: "How do we populate the posting lists? $k-NN$!" --> 
+<!-- footer: "" --> 
 
 ---
 
@@ -868,7 +858,7 @@ Connectivity lends itself to several thresholdings:
 <div class="column">
 
 **Position statistics**
-I threshold instances which are
+Threshold instances which are
 - always
 - on average
 - never
@@ -879,7 +869,7 @@ the $(n - k)-th$ neighbor of other instances.
 <div class="column">
 
 **Neighbor statistics**
-I threshold instances which are at least the $i-th$ nearest neighbor of $k$ instances.
+Threshold instances which are at least the $i-th$ nearest neighbor of $k$ instances.
 
 </div>
 </div>
@@ -895,6 +885,8 @@ Instance $x_i$ is at least the $t-th$ neighbor of at least $k$ other instances.
 
 </div>
 
+In other words: the frequency of $i$ in the first $t$ columns of $A$ is  $> k$ times.
+
 Definition used by ODIN: given a posting matrix $A$, $x_i$ is a hub if it appears at least $k$ times in the first $t$ columns of $A$. Hence, $x_i$ is an outlier if the opposite is true:
 $$
 \hat{o}(x_i) = \begin{cases}
@@ -903,8 +895,26 @@ $$
 \end{cases}
 $$
 
-
 <!-- footer: "Outlier Detection using k-Nearest Neighbors Graph, Hautamaki et al." --> 
+
+---
+
+# A note on the notation
+
+When working with a matrix $A$, we filter rows and columns with subscripts.
+
+$$
+A_{rows, columns}
+$$
+filters the rows and columns of $A$ with the given indices or conditions, e.g.,
+
+- $A_{[1, 2], 3}$ yields a submatrix with the first two rows of $A$, and the third column
+- $A_{even, [1, 2]}$ yields a submatrix with the even rows of $A$, and the first two columns
+- $A_{[1, 5], odd}$ yields a submatrix with the first and fifth row of $A$, and the odd (first, third, fifth, ...) columns
+
+Thus, in $A_{\neq i,\leq t}$, the $\neq i$  subscript filters out rows different from $i$, and $\leq t$ filters out columns to the right of $t$.
+
+<!-- footer: "" --> 
 
 ---
 
@@ -917,9 +927,9 @@ Instance $x_i$ is, on average, the $t-th$ neighbor of other instances.
 
 </div>
 
-Given a posting matrix $A$, $x_i$ is an outlier if, on average, is not less than the $t-th$ neighbor of other instances:
+Given a posting matrix $A$, $x_i$ is an outlier if, on average, is more than the $t-th$ neighbor of other instances:
 $$
-\hat{o}(x_i) = \dfrac{\sum_{l = 0, l \neq i}^{n - 1} \sum_{j = 0}^{n - 1} \overbrace{\mathbb{1} \{ a_{l, j} = x_i \} l}^{position \text{ } in \text{ } posting \text{ } list} }{n - 1} > t.
+\hat{o}(x_i) = \dfrac{\sum_{l = 1, l \neq i}^{n - 1} \sum_{j = 1}^{n - 1} \overbrace{\mathbb{1} \{ A_{l, j} = x_i \} l}^{position \text{ } in \text{ } posting \text{ } list} }{n - 1} > t.
 $$
 
 <!-- footer: "" --> 
@@ -1109,7 +1119,7 @@ Neighbors at different $k$: Connectivity Outlier Factor does not respects the po
 
 # Reach degrees: $k-NN$ outlier factor
 
-$k$-NN outlier factor (kOF) replaces the average reach at $k$ (denoted with $\bar{\gamma}^k$) with the maximum reach at $k$ (denoted as $\hat{\gamma}^k$):
+$k$-NN outlier factor (kOF) replaces the average reach at $k$ (denoted with $\bar{\gamma}^k$) with the maximum reach at $k$:
 $$
 \tilde{o}(x_i) = \gamma^k(x_i).
 $$
@@ -1133,7 +1143,7 @@ Neighbors considered at different $k$.
 ---
 # Degrees of neighbors concentration
 
-Reach degrees approximate space concentration with (inverse) reach. Rather than pick a $k$, we can swap in a more natural definition of concentration: instances found per unit of space. Even better, instances found within an hypersphere $B(\cdot, \varepsilon)$ of a given radius $\varepsilon$, and centered around $\cdot$.
+Reach degrees approximate space concentration with (inverse) reach. Rather than pick a $k$, we can swap in a more natural definition of concentration: instances found per unit of space. Even better, instances found within an hypersphere $B(\cdot, \varepsilon)$ of a given radius $\varepsilon$, and centered around $x_i$.
 
 <div class="ui two column doubling stackable grid container bottom">
 <div class="column">
@@ -1164,7 +1174,7 @@ Instances, and some $\varepsilon$-hyperspheres centered on them.
 
 We compute concentration on a two-radii approach:
 - **concentration radius** $\varepsilon$: determines the hyperspheres $B(x_i, \varepsilon)$ estimating concentration $c^\varepsilon(x_i)$ of $x_i$ within a radius $\varepsilon$
-- **neighborhood radius**  $\delta$: proportional to $\varepsilon$, determines the neighborhood $B_i$ of $x_i$ as the instances laying within $B(x_i, \delta)$
+- **neighborhood radius**  $\delta$: proportional to $\varepsilon$, determines the neighborhood of $x_i$ as the instances laying within $B(x_i, \delta)$
 
 </div>
 <div class="column w40">
@@ -1200,6 +1210,8 @@ that is, two-radii concentration compares the concentration of an instance, with
 
 Unlike distributional approaches, connectivity factors rely on arbitrary densities and distances, both of which are domain dependent and of unclear interpretation.
 
+Note: since we are working with distances and concentrations, the curse of dimensionality creeps in!
+
 <!-- footer: "" --> 
 
 ---
@@ -1217,7 +1229,7 @@ Unlike distributional approaches, connectivity factors rely on arbitrary densiti
 ---
 # Fast neighborhood estimation
 
-Neighbor approaches rely on **expensive** neighborhood functions, e.g., k-NN, and in turn build anomaly degrees on the basis of different assumptions on said neighborhoods: the neighborhoods determine the anomaly degree *post-hoc* through different cheap scoring functions.
+Neighbor approaches rely on **expensive** neighborhood computation functions, and in turn build anomaly degrees on the basis of different assumptions on said neighborhoods: the neighborhoods determine the anomaly degree *post-hoc* through different cheap scoring functions.
 
 <div class="ui compact message quote">
 <img class="ui tiny circular left floated image author" src="https://cdn.jsdelivr.net/gh/msetzu/marpee@latest/assets/imgs/people/feitonyliu_square.png">
