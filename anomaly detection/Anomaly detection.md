@@ -117,6 +117,41 @@ Outliers are...
 
 ---
 
+# Thought exercise
+
+You are given a cycling data collection, with data gathered from different sources, covering all tours of thousands of cyclists from 2018 to 2024.
+
+<div class="ui two column doubling stackable grid container bottom">
+<div class="column">
+
+**Sources**
+- A social network for competitive non-professional cyclists
+- A training platform for professional cyclists
+- A social network for non-competitive, non-professional cyclist that cycle to explore nature
+
+</div>
+<div class="column">
+
+**Features**
+ - Speed
+ - Cadence
+ - Bike used
+ - Track, e.g., length, elevation, climbs
+ - Info on the cyclist, e.g., age
+
+</div>
+</div>
+
+---
+
+# Outliers: doping
+
+- *Fuzzy*: there are rarely clear-cut doping cases (Armstrong being a notable exception)
+- *Data-dependent*: doped cyclists impact all performance statistics, thus also our idea of what a "non-doped" cyclists looks like
+- *Mono or multi-dimensional*: a cyclist may be doped due to their sprint speed, their durability, their anaerobic capacity... or a combination of them!
+
+---
+
 # Defining outliers
 
 <div class="ui two column doubling stackable grid container bottom">
@@ -425,7 +460,7 @@ For a variable $X$ and threshold $\beta$, it holds
 $$
 \Pr[\mid X - \mathbb{E}[X] \mid > \beta] \leq \dfrac{\sigma^2_X}{\beta^2}.
 $$
-That is, the probability of deviation from the mean is inversely proportional to the deviation, and directly proportional to the variance.
+That is, the probability of deviation from the mean is inversely proportional to the deviation.
 
 <!-- footer: "The tails of a distribution simply identify *extreme* events, thus only a category of anomalies applies." -->
 
@@ -620,166 +655,6 @@ The cost: lower interpretability of the results.
 | **Sensitivity**      | Strongly influenced by outliers                                           |
 | **Interpretability** | Partial: which instances have lower degrees? What even is a "low" degree? |
 
----
-
-# Discriminative detection
-
-Manifold approaches *describe* the manifold by defining it in terms of its instances.
-
-<div class="ui compact message quote">
-<p style="margin: 0;">Why don't we <i>discriminate</i> outliers instead?</p>
-<p class="description">Mary M. Moya, Don R. Rush. <a href="https://www.sciencedirect.com/science/article/pii/0893608095001204?via%3Dihub">Network constraints and multi-objective optimization for one-class classification</a>, 1990</p>
-</div>
-
----
-
-# (Linear) Discriminative outlier detection
-
-<div class="ui two column doubling stackable grid container bottom">
-<div class="column">
-
-<div class="ui segment inverted highlight">
-
-Paradigm shift: we define the manifold as a *separating* manifold that separates the data from outliers.
-
-</div>
-
-- Assumption #1: I have some knowledge about which instances are outliers ($X^\notin$).
-- Assumption #2: Outliers can be defined linearly with respect to the inliers ($X^\in$).
-
-</div>
-<div class="column">
-
-<img class="ui medium centered image" src="https://cdn.jsdelivr.net/gh/msetzu/marpee@latest/assets/imgs/linalg/SVG/planes.svg">
-<div class="caption">
-
-Inlier instances $X^\in$ (red squares) and a separating hyperplane $w^T x + b = 0$ separating them from outlier instances $X^\notin$ (blue circles).
-
-</div>
-</div>
-</div>
-
-<!-- footer: "" --> 
-
----
-
-# (Linear) Discriminative outlier detection
-
-<div class="ui two column doubling stackable grid container bottom">
-<div class="column">
-
-Our goal: to best separate the outliers, that is, to **maximize** the distance between them and the inliers. In other words, to find a discriminative criterion maximizing the distance between inliers and outliers.
-
-Two goals:
-1. Find a formula for the *margin*
-2. Maximize it
-
-</div>
-<div class="column">
-
-<img class="ui large centered image" src="https://cdn.jsdelivr.net/gh/msetzu/marpee@latest/assets/imgs/linalg/SVG/planes.svg">
-<div class="caption">
-
-The *margin* (in beige) centered on the hyperplane separates inliers and outliers: we wish to maximize this!
-
-</div>
-</div>
-</div>
-
-<!-- footer: "" --> 
-
----
-
-
-# Support Vector Machines
-
-<div class="ui two column doubling stackable grid container bottom">
-<div class="column w60">
-
-Let us define a hyperplane $w^Tx + b = 0$ separating $X^\in$ and $X^\notin$, for which we have
-$$
-\begin{cases}
-w^T x + b \geq + 1 & \text { for } x \in X^\in \\
-w^T x + b \leq - 1 & \text { for } x \in X^\notin 
-\end{cases}
-$$
-
-Instances in the margin (called *support* instances/vectors) solve this for $w^T x + b = \pm 1.$
-
-We can compact the two into
-$$
-y^\cdot ( w^T x + b) + 1 \geq 0
-$$
-
-
-</div>
-<div class="column w40">
-<img class="ui medium centered image" src="https://cdn.jsdelivr.net/gh/msetzu/marpee@latest/assets/imgs/linalg/SVG/planes.svg">
-<div class="caption">
-
-Instances and a separating hyperplane $w^T x + b = 0$. The two half-planes in red and blue are defined by $w^T x + b \geq + 1$ and $w^T x + b \leq + 1$, respectively.
-
-</div>
-
-</div>
-</div>
-
-<!-- footer: "" --> 
-
----
-
-# One-class Support Vector Machines
-
-Solving analytically, we have that 
-
-1. The defining hyperplane $w$ is a linear combination of the instances!
-2. Some (hopefully many) instances have a zero coefficient $\lambda_i$, the others define (*support*) the hyperplane
-3. The optimization takes the form $\Sigma_{i = 1}^n \lambda_i - \dfrac{1}{2} \Sigma_{i = 1}^n\Sigma_{j = 1}^n \lambda_i \lambda_j y^\cdot_i y^\cdot_j \underbrace{x_i \cdot x_j}_{dot \text{ } product!}$
-
-<!-- footer: "For a more in-depth derivation, see [MIT OpencorseWare, 16. Learning: Support Vector Machines](https://youtu.be/_PwhiWxHK8o?t=1367)" --> 
-
----
-
-# Tackling linearity: the Kernel trick
-
-Can we relax linearity without losing the interpretability of the algorithm? Yes, by changing the data itself, rather than the algorithm. We map the data from $\mathcal{X}$ to $\mathcal{\Phi}$, a space wherein instances are not strictly defined in terms of their features, but rather in terms of *inner products*, e.g., dot product, with other instances.
-
-<div class="img_row centered">
-<img class="ui medium centered image" src="https://cdn.jsdelivr.net/gh/msetzu/marpee@latest/assets/imgs/linalg/SVG/polykernel.svg">
-<img class="ui medium centered image" src="https://cdn.jsdelivr.net/gh/msetzu/marpee@latest/assets/imgs/linalg/SVG/rbfkernel.svg">
-</div>
-<div class="caption">
-
-Kernel SVM: the margin can take nonlinear form.
-
-</div>
-
-<!-- footer: "" --> 
-
----
-
-
-# What kernel $\Phi$ to choose?
-
-There is a wide array of plug-and-play kernels we can use.
-
-| Kernel       | Formulation                                              | Description                       | Similarity     |
-| ------------ | -------------------------------------------------------- | --------------------------------- | -------------- |
-| Linear       | $x^T y$                                                  | Basic linear kernel               | Angle-based    |
-| Radial basis | $exp(- \dfrac{\mid \mid x - y \mid \mid^2}{2 \sigma^2})$ | Exponentially decaying similarity | Distance-based |
-| Polynomial   | $(x^T y + c)^d$                                          | Exponential kernel                | Angle-based    |
-
-<!-- footer: "" --> 
-
----
-
-# Grading in One-Class Support Vector 
-
-| Axis                 |                                                                |
-| -------------------- | -------------------------------------------------------------- |
-| **Locality**         | Global                                                         |
-| **Sensitivity**      | Choice of $X^\notin$: typically composed of negative instances |
-| **Interpretability** | Yes! Support instances define the margin                       |
 
 ---
 
@@ -810,7 +685,7 @@ Unbounded and domain-dependent
 <div class="column">
 <div class="ui segment base pros"> 
 
-- Flexible nonlinear manifold
+- Linear manifold
 
 </div>
 </div>
@@ -819,7 +694,7 @@ Unbounded and domain-dependent
 
 - May be computationally unstable
 - Strong manifold assumptions
-- Possibly uninterpretable results
+- Possibly uninterpretable outlier degrees
 
 </div>
 </div>
