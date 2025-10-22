@@ -26,7 +26,7 @@ topic:
     href="https://cdn.jsdelivr.net/npm/semantic-ui@2.5.0/dist/semantic.min.css">
 <link
     rel="stylesheet"
-    type="text/css",
+    type="text/css"
     href="https://cdn.jsdelivr.net/gh/msetzu/marpee@latest/assets/libs/semanticui/override.css">
 
 <!-- Mermaid -->
@@ -34,33 +34,39 @@ topic:
     src="https://cdn.jsdelivr.net/npm/mermaid@10.3.0/dist/mermaid.min.js"></script>
 <link
     rel="stylesheet"
-    type="text/css",
+    type="text/css"
     href="https://cdn.jsdelivr.net/gh/msetzu/marpee@latest/assets/libs/mermaid/mermaid.css">
 
 <!-- Theme -->
 <link
     rel="stylesheet"
-    type="text/css",
+    type="text/css"
     href="https://cdn.jsdelivr.net/gh/msetzu/marpee@latest/css/themes/base.css">
 <link
     rel="stylesheet"
-    type="text/css",
+    type="text/css"
     href="https://cdn.jsdelivr.net/gh/msetzu/marpee@latest/css/themes/unipi.css">
 <link
     rel="stylesheet"
-    type="text/css",
+    type="text/css"
     href="https://cdn.jsdelivr.net/gh/msetzu/marpee@latest/css/themes/colors.css">
 
 <!-- Slide size -->
-<link
+<!-- <link
     rel="stylesheet"
     type="text/css",
-	href="https://cdn.jsdelivr.net/gh/msetzu/marpee@latest/css/scaling/px1280_720.css">
+	href="https://cdn.jsdelivr.net/gh/msetzu/marpee@latest/css/scaling/px1280_720.css"> -->
+
+<link
+    rel="stylesheet"
+    type="text/css"
+	href="https://cdn.jsdelivr.net/gh/msetzu/marpee@latest/css/scaling/sizing.css">
 
 <link
     rel="stylesheet"
     type="text/css",
-	href="https://cdn.jsdelivr.net/gh/msetzu/marpee@latest/css/scaling/sizing.css">
+	href="file:////home/davine/projects/marpee/css/scaling/px1128_752.css">
+
 
 <!-- paginate: skip -->
 
@@ -178,11 +184,11 @@ $$
 <div class="ui two column doubling stackable grid container bottom">
 <div class="column w60">
 
-| age | priors | sex | $r_1$ | $r_2$ | $r_3$ | $r_4$ | $r_4$ |
-| --- | ------ | --- | ----- | ----- | ----- | ----- | ----- |
-| 24  | 4      | m   |       |       |       |       |       |
-| 20  | 1      | f   |       |       |       |       |       |
-| 20  | 5      | m   |       |       |       |       |       |
+| age | priors | sex | $r_1$ | $r_2$ | $r_3$ | $r_4$ | 
+| --- | ------ | --- | ----- | ----- | ----- | ----- |
+| 24  | 2      | m   |       |       |       |       |
+| 20  | 1      | f   |       |       |       |       |
+| 20  | 5      | m   |       |       |       |       |
 
 </div>
 <div class="column w40">
@@ -205,11 +211,11 @@ What is the value of the support indicator variable?
 (5) else not_recidivous
 ```
 
-| age | priors | sex | $r_1$ | $r_2$ | $r_3$ | $r_4$ | $r_4$ |
-| --- | ------ | --- | ----- | ----- | ----- | ----- | ----- |
-| 24  | 4      | m   | `1`   | `0`   | `0`   | `0`   | `0`   |
-| 20  | 1      | f   | `0`   | `1`   | `0`   | `0`   | `0`   |
-| 20  | 5      | m   | `0`   | `1`   | `0`   | `0`   | `0`   |
+| age | priors | sex | $r_1$ | $r_2$ | $r_3$ | $r_4$ |
+| --- | ------ | --- | ----- | ----- | ----- | ----- |
+| 24  | 2      | m   | `1`   | `0`   | `0`   | `0`   |
+| 20  | 1      | f   | `0`   | `1`   | `0`   | `0`   |
+| 20  | 5      | m   | `0`   | `1`   | `0`   | `0`   |
 
 ---
 
@@ -257,7 +263,7 @@ A branch and bound tree for rule lists, trimmed at depth $1$.
 
 # Size of the rule space: full-length rule
 
-For simplicity, assume $m$ features, each discretized in $k$ bins, and each feature can only appear in a rule once. A rule of length $m$ can be constructed with a carthesian product of predicates from each of the $m$ $k$-large sets: we have $k^m$ combinations!
+For simplicity, assume $m$ features, each discretized in $k$ bins, and each feature can only appear in a rule once. A rule of (maximum) length $m$ can be constructed with a carthesian product of predicates from each of the $m$ $k$-large sets: we have $k^m$ combinations!
 
 | age        | salary      | assets     |
 | ---------- | ----------- | ---------- |
@@ -308,17 +314,13 @@ A branch and bound tree, a set of states to explore (in grey). The associated qu
 
 ---
 
-# Certifiably Optimal Rule Lists: CORELS
-
-**Modeling**
+# Modeling: rules
 
 First we model the rule list as a tuple $R: (P_{R}, Y_{R}, y_R^{0})$ of
 
 - $P_R: (p^1, \dots, p^{k^R})$ premises of the rules, i.e., their body or antecedents
 - $Y_R: (y_R^1, \dots, y_R^{k^R})$ labels associated to each rule
 - $y_R^0$ default label: applied when no rule is satisfied
-
-An ordering is defined among rules: if a rule list $R$ is a prefix of a rule $R^+$, then $R \preceq R^+$. That is, nodes in the search tree extend their parents by adding a rule to their lists.
 
 <!-- footer: "Learning Certifiably Optimal Rule Lists, Angelino et al." -->
 
@@ -338,6 +340,29 @@ An ordering is defined among rules: if a rule list $R$ is a prefix of a rule $R^
 
 
 <!-- footer: "Note: $k^R$ only counts non-default rules." -->
+
+---
+
+# Modeling: tree
+
+<div class="ui two column doubling stackable grid container bottom">
+<div class="column w35">
+
+An ordering is defined among rules: if a rule list $R$ is a prefix of a rule $R^+$, then $R \preceq R^+$. That is, nodes in the search tree extend their parents by adding a rule to their lists.
+
+
+</div>
+<div class="column w60">
+<img class="ui image centered large" src="https://cdn.jsdelivr.net/gh/msetzu/marpee@latest/assets/imgs/ml/SVG/corelsplus1step_single_loss.svg">
+<div class="caption">
+
+A parent and child node in the tree.
+
+</div>
+</div>
+</div>
+
+<!-- footer: "" -->
 
 ---
 
@@ -414,11 +439,11 @@ Rule lists, their prefix relationship, and the relationship with the loss and bo
 
 $$
 \begin{align}
-l_{R}(R^+, X, Y) &= \dfrac{1}{n} \sum\limits_{x, y \in X \times Y} \sum_{j = 1}^{k^{R^+}} supp_{P_{R}}(p^j, x) \mathbb{1}[y = y_{R}^{j}] \\ \\
+l_{R}(R^+, X, Y) &= \dfrac{1}{n} \sum\limits_{x, y \in X \times Y} \sum_{j = 1}^{k^{R^+}} supp_{P_{R}}(p^j, x) \mathbb{1}[y \neq y_{R}^{j}] \\ \\
 
-&= \dfrac{1}{n} \sum\limits_{x, y \in X \times Y} ( \sum_{j = 1}^{k^{R}} supp_{P_{R}}(p^j, x) \mathbb{1}[y = y_{R}^{j}] +  \sum_{j = k^R}^{k^{R^+}} supp_{P_{R}}(p^j, x) \mathbb{1}[y = y_{R}^{j}] )\\ \\
+&= \dfrac{1}{n} \sum\limits_{x, y \in X \times Y} ( \sum_{j = 1}^{k^{R}} supp_{P_{R}}(p^j, x) \mathbb{1}[y \neq y_{R}^{j}] +  \sum_{j = k^R}^{k^{R^+}} supp_{P_{R}}(p^j, x) \mathbb{1}[y \neq y_{R}^{j}] )\\ \\
 
-&= \underbrace{ \dfrac{1}{n} \sum\limits_{x, y \in X \times Y} ( \sum_{j = 1}^{k^{R}} supp_{P_{R}}(p^j, x) \mathbb{1}[y = y_{R}^{j}])}_{l_{R}} + \underbrace{ \dfrac{1}{n} \sum\limits_{x, y \in X \times Y} \sum_{j = k^R}^{k^{R^+}} supp_{P_{R}}(p^j, x) \mathbb{1}[y = y_{R}^{j}] )}_{\geq 0}
+&= \underbrace{ \dfrac{1}{n} \sum\limits_{x, y \in X \times Y} ( \sum_{j = 1}^{k^{R}} supp_{P_{R}}(p^j, x) \mathbb{1}[y \neq y_{R}^{j}])}_{l_{R}} + \underbrace{ \dfrac{1}{n} \sum\limits_{x, y \in X \times Y} \sum_{j = k^R}^{k^{R^+}} supp_{P_{R}}(p^j, x) \mathbb{1}[y \neq y_{R}^{j}] )}_{\geq 0}
 \end{align}
 $$
 
@@ -611,7 +636,8 @@ while len(queue) > 0:
 			current_best_state = state
 
 		# branch: trim() uses the bounds to trim suboptimal states
-		queue += trim(state.generate_children(), data, labels, state)  # 
+		new_states = state.children() 
+		queue.push_all([s for s in new_states if not trim(s, data, labels, state)])
 	
 
 return current
