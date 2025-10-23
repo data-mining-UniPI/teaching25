@@ -375,7 +375,7 @@ l(R, X, Y) = \underbrace{l_{R}(R, X, Y)}_{supported} + \underbrace{l_{0}(R, X, Y
 $$
 where:
 - $l_{R}(R, X, Y) = \dfrac{1}{n} \sum\limits_{x, y \in X \times Y} \sum_{j = 1}^{k^R} supp_{P_{R}}(p_{R}^j, x) \mathbb{1}[y \neq y_{R}^{j}]$
-- $l_{0}(R, X, Y) = \dfrac{1}{n} \sum\limits_{x, y \in X \times Y} \sum_{j = 1}^{k^R} \underbrace{ (1 - supp(P_R, x)) }_{\text {not supported by any rule}}\mathbb{1}[y  \neq y^{k^R}_{R}]$
+- $l_{0}(R, X, Y) = \dfrac{1}{n} \sum\limits_{x, y \in X \times Y} \underbrace{ (1 - supp(P_R, x)) }_{\text {not supported by any rule}}\mathbb{1}[y  \neq y^{0}_{R}]$
 
 <!-- footer: "" -->
 
@@ -621,7 +621,7 @@ A rule $p$ should be added if and only if it has accuracy $\alpha^p \geq \lambda
 
 ---
 
-# Branch and bound in CORELS
+**Algorithm**
 
 ```python
 queue = [()]
@@ -637,7 +637,8 @@ while len(queue) > 0:
 
 		# branch: trim() uses the bounds to trim suboptimal states
 		new_states = state.children() 
-		queue.push_all([s for s in new_states if not trim(s, data, labels, state)])
+		queue.push_all([s for s in new_states
+                        if not trim(s, data, labels, state)])
 	
 
 return current
