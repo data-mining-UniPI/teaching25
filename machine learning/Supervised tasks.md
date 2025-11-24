@@ -173,7 +173,7 @@ A univariate split: the split is orthogonal to the axes.
 
 A higher-capacity model, with a more expressive split function:
 $$
-f_i(x) \equiv x_i \theta_i + \theta_i^0
+f_i(x) \equiv x \theta + \theta^0
 $$
 
 Since they generate "oblique" (non axis-parallel) splitting hyperplanes, they are also called *oblique* trees.
