@@ -234,6 +234,8 @@ $$
 
 High autocovariances may indicate seasonality in the series.
 
+<!-- footer: "Note: the $-\\Delta$ in the summation upper bound avoids out of bounds access to $s$." --> 
+
 ---
 
 # Time series: sliding statistics
@@ -242,13 +244,17 @@ High autocovariances may indicate seasonality in the series.
 Shifted pointwise correlation of the two series $a, b$, measured as a *sliding* inner product:
 
 $$
-CC_\Delta(a, b) = \sum_{i = 1}^n a_i \cdot b_{i + \Delta}.
+CC_\Delta(a, b) = \sum_{i = 1}^{n - \Delta} a_i \cdot b_{i + \Delta}.
 $$
 For univariate time series, the inner product is simply a multiplication.
+
+<!-- footer: "Note: the $-\\Delta$ in the summation upper bound avoids out of bounds access to the $b$ time series." --> 
 
 ---
 
 ## From analyzing to transforming
+
+<!-- footer: "" --> 
 
 ---
 
@@ -315,12 +321,9 @@ Segmentation on minimum error (top) and given number of segments (bottom).
 
 <!-- footer: "" --> 
 
----
-# Learned equidistributional windows
-
-We *learn* segmentations by their likelihood: given a desired number of segments, segments are learned to maximize their probability $p(s^i_\subset)$, which results in segments as equiprobable as possible, ideally following a uniform distribution. By maximizing probability, we maximize entropy, and thus the diversity of the subseries.
 
 ---
+
 # Continuous transformations
 
 |                        | Description                   | Type       | $f^\Sigma$             | $\Sigma$                   |
@@ -329,6 +332,12 @@ We *learn* segmentations by their likelihood: given a desired number of segments
 | Piecewise Linear (PL)  | Slope $\nabla$ of the segment | Continuous | $\nabla_{s^i_\subset}$ | $\mathbb{R}, \mathbb{R}^2$ |
 
 <!-- footer: "$\\mathbb{R}^2$ given by storing both slope and intercept of the linear model." --> 
+
+---
+
+# Learned equidistributional windows
+
+We *learn* segmentations by their likelihood: given a desired number of segments, segments are learned to maximize their probability $p(s^i_\subset)$, which results in segments as equiprobable as possible, ideally following a uniform distribution. By maximizing probability, we maximize entropy, and thus the diversity of the subseries.
 
 ---
 
@@ -358,19 +367,28 @@ SAX symbols are discrete *and* ordinal!
 
 <div class="ui three column doubling stackable grid container bottom">
 <div class="column">
+
+**Segmentation**
+
 <img class="ui large centered image" src="https://cdn.jsdelivr.net/gh/msetzu/marpee@latest/assets/imgs/series/SVG/sax_segmentation.svg">
 </div>
 <div class="column">
+
+**Distribution bucketing**
+
 <img class="ui large centered image" src="https://cdn.jsdelivr.net/gh/msetzu/marpee@latest/assets/imgs/series/SVG/sax_probability.svg">
 </div>
 <div class="column">
+
+**Transformation of the original series**
+
 <img class="ui large centered image" src="https://cdn.jsdelivr.net/gh/msetzu/marpee@latest/assets/imgs/series/SVG/sax_transformed.svg">
 </div>
 </div>
 
 <div class="caption">
 
-The three steps of SAX: subsymbol induction with fixed-window average segmentation, partitioning of the subsymbol distribution, and transformation.
+The three steps of SAX. First, fixed-window average segmentation creates a set of segments and segment-wise averages. Then, their empirical distribution is estimated, and a set of buckets of equal density is extracted by considering the distribution's quantiles. Finally, each bucket is assigned a symbol, and the series is mapped to the symbols through substitution.
 
 </div>
 
